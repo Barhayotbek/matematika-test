@@ -3,7 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Matematika · Milliy sertifikat mashqi</title>
+<title>Registon Test — Matematika fanidan milliy sertifikat mashqi</title>
+<meta name="description" content="Registon Test: matematikadan milliy sertifikat imtihoniga tayyorlanish uchun bepul namunaviy testlar. C dan A+ gacha darajalar, taymer va xatolar tahlili.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="uz_UZ">
+<meta property="og:title" content="Registon Test — Matematika fanidan milliy sertifikat mashqi">
+<meta property="og:description" content="C dan A+ gacha namunaviy matematika testlari, taymer va xatolar tahlili.">
 <style>
 :root{--bg:#f6f4ee;--ink:#14213d;--mut:#5b6478;--line:#d9d5c7;--card:#fffdf7;--acc:#1f4fd8;--ok:#1b7f4b;--bad:#b3261e;--grid:#ebe7da;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -80,9 +85,10 @@ function save(d){try{localStorage.setItem("mat-cert",JSON.stringify(d))}catch(e)
 function home(){
  clearInterval(st.timer);const d=load();const best=d.best||{};
  const hist=(d.hist||[]).slice(-5).reverse();
- app.innerHTML=`<h1>Matematika</h1><p class="mut">Milliy sertifikat mashqi. Darajani tanlang va namunaviy testni yeching. Har bir testda ${CONFIG.seconds/60} daqiqa vaqt bor.</p>
+ app.innerHTML=`<h1>Registon Test</h1><p class="mut">Matematika fanidan milliy sertifikat mashqi. Darajani tanlang va namunaviy testni yeching. Har bir testda ${CONFIG.seconds/60} daqiqa vaqt bor.</p>
  <div class="levels">${LEVELS.map(l=>`<button class="lv ${best[l]>=CONFIG.passPercent?"done":""}" data-l="${l}"><b>${l}</b><span>${best[l]!=null?"Eng yaxshi: "+best[l]+"%":"Hali yechilmagan"}</span></button>`).join("")}</div>
- ${hist.length?`<div class="card"><h2>So'nggi urinishlar</h2><table class="hist">${hist.map(h=>`<tr><td><b>${h.l}</b></td><td>${h.c}/${h.n} to'g'ri</td><td class="${h.p>=CONFIG.passPercent?"good":"wrong"}">${h.p}%</td><td class="mut">${h.d}</td></tr>`).join("")}</table></div>`:""}`;
+ ${hist.length?`<div class="card"><h2>So'nggi urinishlar</h2><table class="hist">${hist.map(h=>`<tr><td><b>${h.l}</b></td><td>${h.c}/${h.n} to'g'ri</td><td class="${h.p>=CONFIG.passPercent?"good":"wrong"}">${h.p}%</td><td class="mut">${h.d}</td></tr>`).join("")}</table></div>`:""}
+ <p class="mut" style="font-size:.85rem;margin-top:28px">Bu mustaqil mashq platformasi. U davlat imtihon markazi bilan bog'liq emas va rasmiy imtihon natijasini bermaydi.</p>`;
  app.querySelectorAll(".lv").forEach(b=>b.onclick=()=>start(b.dataset.l));
 }
 function start(l){st={level:l,i:0,ans:Array(BANK[l].length).fill(null),left:CONFIG.seconds,timer:null};
